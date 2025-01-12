@@ -1,12 +1,14 @@
 import userModel from "../models/userModel.js";
 import bcrypt from "bcrypt";
 
+
+
 async function userSignUpController(req, res) {
     try {
         const { email, password, name } = req.body;
 
         const user = await userModel.findOne({ email });
-
+  
         console.log("user", user);
 
         if (user) {
@@ -35,6 +37,7 @@ async function userSignUpController(req, res) {
 
         const payload = {
             ...req.body,
+            role : "GENERAL",
             password: hashPassword, 
         };
 
